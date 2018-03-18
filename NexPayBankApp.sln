@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexPayBankApp", "NexPayBankApp\NexPayBankApp.csproj", "{8C8E8DE3-FA98-41FE-8E2B-E5768DA0E06C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexPayunitTests", "NexPayunitTests\NexPayunitTests.csproj", "{1E07510F-F6E1-40FB-B64E-4E247C7CB0FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C8E8DE3-FA98-41FE-8E2B-E5768DA0E06C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C8E8DE3-FA98-41FE-8E2B-E5768DA0E06C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C8E8DE3-FA98-41FE-8E2B-E5768DA0E06C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C8E8DE3-FA98-41FE-8E2B-E5768DA0E06C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E07510F-F6E1-40FB-B64E-4E247C7CB0FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E07510F-F6E1-40FB-B64E-4E247C7CB0FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E07510F-F6E1-40FB-B64E-4E247C7CB0FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E07510F-F6E1-40FB-B64E-4E247C7CB0FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {30049741-10EA-4A7F-86C4-973308862828}
+	EndGlobalSection
+EndGlobal
