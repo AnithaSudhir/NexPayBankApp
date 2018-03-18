@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.UI.WebControls.WebParts;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Data;
+﻿using NexPayBankApp.Filters;
+using NexPayBankApp.Logging;
 using NexPayBankApp.Models;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Web.Mvc;
 
 namespace NexPayBankApp.Controllers
 {
@@ -19,6 +15,7 @@ namespace NexPayBankApp.Controllers
             return View();
         }
 
+        [TraceFilter]
         public ActionResult AddBankAccount(BankModel BankModelClient)
         {
             return PartialView();
@@ -27,10 +24,21 @@ namespace NexPayBankApp.Controllers
         public List<BankModel> BankAccountsList = null;
         public ActionResult AddBankDetails(BankModel BankModelClient)
         {
-            InsertBankDetailsIntoNotePad(BankModelClient);
-            List<BankModel> list = new List<BankModel>();
-            list.Add(BankModelClient);            
-            return Json(list, JsonRequestBehavior.AllowGet);
+            try
+            {
+                //Inserting the entered details to the notepad
+                InsertBankDetailsIntoNotePad(BankModelClient);
+                List<BankModel> list = new List<BankModel>();
+                list.Add(BankModelClient);
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }            
+              catch (Exception e)
+            {
+                Log.LogException(e.InnerException.ToString(), "AddBankDetails", "Home", Convert.ToInt32(e.StackTrace.Substring(e.StackTrace.LastIndexOf(":line") + 5)));
+
+                throw;
+            }
+        
         }
 
         private void InsertBankDetailsIntoNotePad(BankModel bank)
@@ -39,13 +47,14 @@ namespace NexPayBankApp.Controllers
             {
                 var path = AppDomain.CurrentDomain.BaseDirectory;
                 string file_name = path + "BankDetails.txt";
+                //If file does not exist creating the file
                 if (!System.IO.File.Exists(file_name))
                 {
                     using (StreamWriter objWriter = System.IO.File.CreateText(file_name))
                     {
                         WriteToNotePad(objWriter, bank);
                     }
-                }
+                }//If file exists , appending the text
                 else
                 {
                     using (StreamWriter objWriter = System.IO.File.AppendText(file_name))
@@ -55,8 +64,10 @@ namespace NexPayBankApp.Controllers
                 }
 
             }
-            catch
+            catch(Exception e)
             {
+                Log.LogException(e.InnerException.ToString(), "InsertBankDetailsIntoNotePad","Home", Convert.ToInt32(e.StackTrace.Substring(e.StackTrace.LastIndexOf(":line") + 5)));
+
                 throw;
             }
 
@@ -73,8 +84,10 @@ namespace NexPayBankApp.Controllers
                 objWriter.Write("Reference : " + bank.Reference + Environment.NewLine);
                 objWriter.Write("Amount : " + bank.PaymentAmount + Environment.NewLine);
             }
-            catch
+            catch(Exception e)
             {
+                Log.LogException(e.InnerException.ToString(), "WriteToNotePad", "Home", Convert.ToInt32(e.StackTrace.Substring(e.StackTrace.LastIndexOf(":line") + 5)));
+
                 throw;
             }
         }

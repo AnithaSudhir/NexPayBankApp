@@ -14,7 +14,7 @@
 
 }]);
 
-//Add Employee Controller
+//Add Bank details Controller
 angular.module('AngularDemo.AddBankController', ['ngRoute'])
 .controller('BankAddCtrl', function ($scope, $http) {
 
@@ -48,8 +48,7 @@ angular.module('AngularDemo.AddBankController', ['ngRoute'])
             success: function (data) {
                 $scope.BankDetailsList.push(data[0]);
                 $scope.$apply();
-                $scope.BankModel = '';
-                //$scope.$apply();
+                $scope.BankModel = '';               
                 alert("Record is been added");
                
             }
